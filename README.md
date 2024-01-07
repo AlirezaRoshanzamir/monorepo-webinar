@@ -21,4 +21,4 @@ $ make run-live
 ## Sessions
 | Number | Topic |
 | ------ | ----- |
-|   1    | [Monorepo vs Polyrepo | Exploring Pants Monorepo Tool for Python](1-monorepo-vs-polyrepo-and-exploring-pants) |
+|   1    | [Monorepo vs Polyrepo \| Exploring Pants Monorepo Tool for Python](1-monorepo-vs-polyrepo-and-exploring-pants) |
