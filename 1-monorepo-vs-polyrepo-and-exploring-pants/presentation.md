@@ -50,7 +50,7 @@
 ## An Overview of Build Tools
 <img src="assets/modern-software-development-meme.webp" width="500" class="fragment start">
 
-Build tools have a common core: **modeling dependencies**:  <!-- .element class="fragment fade-in-with-next custom" -->
+Build tools have a common core, **modeling dependencies**:  <!-- .element class="fragment fade-in-with-next custom" -->
 
 <img src="assets/build-dependency-network.webp">
 
@@ -202,7 +202,7 @@ A monorepo is a **single repository** containing **multiple distinct projects**,
 ### Monorepo != Monolith
 A good monorepo is the opposite of monolithic:
 
-<img src="assets/monorepo-vs-monolith.webp">
+<img src="assets/monorepo-vs-monolith.png">
 
 ------
 ### Polyrepo
@@ -335,6 +335,8 @@ As your **workspace grows**, the tools have to help you keep it **fast**, **unde
 - VCS Tooling Challenges  <!-- .element: class="fragment insides-fade-in-then-out" -->
   - The complexity and size of the codebase, which makes it difficult to understand, search, scale, and maintain.  <!-- .element: class="fragment fade-in-then-semi-out" -->
   - Microsoft has released a Virtual File System (VFS) for Git to help manage the overload.  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- CI Tooling Challenges  <!-- .element: class="fragment insides-fade-in-then-out" -->
+  - Azure, Circle, and Jenkins, popular CI solutions, offer flexibility, but it may take time to accomplish some tasks.  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Limitations Around Access Control  <!-- .element: class="fragment insides-fade-in-then-out" -->
   - Your company may not want every engineer to have access to the entire codebase.  <!-- .element: class="fragment fade-in-then-semi-out" -->
   - GitHub and GitLab support CODEOWNERS file to define which team owns subdirectories in the repository.  <!-- .element: class="fragment fade-in-then-semi-out" -->
@@ -354,15 +356,20 @@ As your **workspace grows**, the tools have to help you keep it **fast**, **unde
 ------
 ## Sample Project Structure: Pants
 
-<pre style="font-size: 16px">
-[project-name]/
+<pre style="font-size: 15px">
+[organization]/
   src/                 You can create a directory for each programming language.
-    [project-name]/
+    [organization]/
+      [app1]/
+      [app2]/
+      [app3]/
+      [lib1]/
+      [lib2]/
   tests/
   examples/
-    [example1-name]/
-    [example2-name]/
-    [example3-name]
+    [example1]/
+    [example2]/
+    [example3]
     run.py
     BUILD
   docs/
@@ -370,8 +377,6 @@ As your **workspace grows**, the tools have to help you keep it **fast**, **unde
     index.rst
     release.py
     build.py
-    doctests.py
-    enrich.py
     BUILD
   pants_plugins/
   dist/
@@ -384,7 +389,6 @@ As your **workspace grows**, the tools have to help you keep it **fast**, **unde
   .jenkins/
     ci.Jenkinsfile
   CHANGELOG.md
-  CHANGELOG-fa.md
   requirements.txt
   requirements.lock
   BUILD
@@ -404,25 +408,25 @@ As your **workspace grows**, the tools have to help you keep it **fast**, **unde
 ## Sample Project Structure: JVM-Based/Maven
 
 <pre style="font-size: 20px">
-[project-name]/
+[organization]/
   common/
     terraform/
     service-parent-pom.xml
     service.Dockerfile
   libraries/
-    library-1/
+    [library-1]/
       src/            You can put the unit-test files next to the source files.
       pom.xml
       README.md
-    library-2/
-    library-3/
+    [library-2]/
+    [library-3]/
   services/
-    service-1/
+    [service-1]/
       src/
       terraform/
       pom.xml
       README.md
-    service-2/
+    [service-2]/
   terraform/
   tests/
     end-to-end/
@@ -434,5 +438,31 @@ As your **workspace grows**, the tools have to help you keep it **fast**, **unde
 ---
 ## Exploring Pants Monorepo Tool for Python
 
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Installation
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Key concepts
+  - Goals
+  - Targets and BUILD files
+  - Backends and Subsystems
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Project introspection and dependency inference
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Common Goals
+  - Linting, Formatting
+    - Python
+    - Docker
+    - Shell
+    - Protobuf
+    - YAML
+    - ...
+  - Type-checking
+  - Testing
+  - Dependency Pinning
+  - Code generation
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->PEX
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Local caching
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Remote caching and execution
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Semantic release
+- <!-- .element: class="fragment custom insides-fade-in-then-out highlight-current-blue" -->Restricted Internet access
+
 ---
 ## Q&A and Knowledge Sharing
+
+<img src="assets/question-and-answering.jpeg" width="600">
