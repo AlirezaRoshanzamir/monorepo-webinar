@@ -1,0 +1,18 @@
+name: Package and deploy the course static website to the GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  package-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate a static website
+        run: make package
+      - name: Deploy website to GitHub pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/static_website
